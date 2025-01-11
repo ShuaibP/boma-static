@@ -2945,7 +2945,7 @@ table.alt tbody tr td {
 }
 
 .features li {
-	width: 270px;
+	width: calc(30% - 2em);
 	margin-left: 2em;
 	margin-top: 3em;
 	padding: 0;
