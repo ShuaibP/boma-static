@@ -1,197 +1,169 @@
 <!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
-	<title>Generic - Stellar by HTML5 UP</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/styles.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+  <title>Generic - Stellar by HTML5 UP</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css" />
+  </noscript>
 </head>
 
 <body class="is-preload">
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+  <!-- Wrapper -->
+  <div id="wrapper">
 
-		<!-- Header -->
-		<header id="header">
-			<h1>Generic</h1>
-			<p>A page</p>
-		</header>
+    <!-- Header -->
+    <header id="header">
+      <h1>Savings Calculator</h1>
+    </header>
 
-		<!-- Main -->
-		<div id="main">
+    <!-- Main -->
+    <div id="main">
 
-			<!-- Content -->
-			<section id="content" class="main">
-				<div class="calculator">
-					<h2>Calculator</h2>
+      <!-- Content -->
+      <section id="content" class="main">
+        <div class="calculator">
 
-					<div>
-						<label for="monthly-rent">What is your monthly rent? (£): </label>
-						<input type="number" id="monthly-rent" value="0" />
-					</div>
-					<div>
-						<label for="planned-savings">How much do you plan to save? (£): </label>
-						<input type="number" id="planned-savings" value="0" />
-					</div>
+          <div class="spend-container">
+            <!-- Spend Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🏠</div>
+              <div class="spend-input-wrapper">
+                <input type="number" class="styled-input" placeholder="Rent" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-					<h3>Needs</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Category</th>
-								<th>Monthly Spend (£)</th>
-								<th>Annual Savings (£)</th>
-							</tr>
-						</thead>
-						<tbody id="needs-body">
-							<tr>
-								<td>Groceries</td>
-								<td>
-									<input type="number" value="0" data-category="groceries" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Energy Bills</td>
-								<td>
-									<input type="number" value="0" data-category="energy-bills" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Travel</td>
-								<td>
-									<input type="number" value="0" data-category="travel" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<h4>Total Needs Savings: <span id="needs-savings">£0.00</span></h4>
+            <div class="spend-row">
+              <div class="icon-placeholder">💰</div>
+              <div class="spend-input-wrapper">
+                <input type="number" class="styled-input" placeholder="Savings" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
+          </div>
 
-					<h3>Wants</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Category</th>
-								<th>Monthly Spend (£)</th>
-								<th>Annual Savings (£)</th>
-							</tr>
-						</thead>
-						<tbody id="wants-body">
-							<tr>
-								<td>Eating Out</td>
-								<td>
-									<input type="number" value="0" data-category="eating-out" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Entertainment</td>
-								<td>
-									<input type="number" value="0" data-category="entertainment" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Coffee Shops</td>
-								<td>
-									<input type="number" value="0" data-category="coffee-shops" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Fashion</td>
-								<td>
-									<input type="number" value="0" data-category="fashion" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Home/DIY</td>
-								<td>
-									<input type="number" value="0" data-category="home-diy" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Health/Beauty</td>
-								<td>
-									<input type="number" value="0" data-category="health-beauty" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td>Electronics</td>
-								<td>
-									<input type="number" value="0" data-category="electronics" />
-								</td>
-								<td>
-									<span>£0.00</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<h4>Total Wants Savings: <span id="wants-savings">£0.00</span></h4>
+          <h3>Household Needs</h3>
+          <div class="spend-container">
+            <!-- Groceries Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🛒</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Groceries" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-					<h3>Total Annual Savings: <span id="total-savings">£0.00</span></h3>
-					<h3>Spending Breakdown</h3>
-					<canvas id="spendingChart" width="400" height="400"></canvas>
-					<canvas id="spendingBarChart" width="400" height="200"></canvas>
+            <!-- Energy Bills Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">💡</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Energy Bills" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
+            <!-- Travel Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🚗</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Travel" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
+            <!-- Eating Out Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🍽️</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Eating Out" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-</body>
-</section>
+            <!-- Entertainment Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🎬</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Entertainment" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-</div>
+            <!-- Coffee Shops Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">☕</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Coffee Shops" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-<!-- Footer -->
-<footer id="footer">
-</footer>
+            <!-- Fashion Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">👗</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Fashion" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-</div>
+            <!-- Home DIY Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">🛠️</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Home DIY" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <!-- Health & Beauty Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">💄</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Health & Beauty" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
 
+            <!-- Electronics Row -->
+            <div class="spend-row">
+              <div class="icon-placeholder">💻</div>
+              <div class="spend-input-wrapper">
+                <input type="text" class="styled-input" placeholder="Electronics" />
+              </div>
+              <div class="spend-saving">£0.00</div>
+            </div>
+          </div>
+
+          <h3>Total Annual Savings: <span id="total-savings">£0.00</span></h3>
+          <h3>Spending Breakdown</h3>
+          <canvas id="spendingChart"></canvas>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
