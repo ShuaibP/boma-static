@@ -1,46 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
     const percentages = {
-        groceries: 0.05, // 5% savings
-        "energy-bills": 0.01, // 10% savings
-        travel: 0.05, // 12% savings
-        "eating-out": 0.1, // 15% savings
-        entertainment: 0.2, // 20% savings
-        "coffee-shops": 0.1, // 10% savings
-        fashion: 0.1, // 25% savings
-        "home-diy": 0.1, // 8% savings
-        "health-beauty": 0.1, // 10% savings
-        electronics: 0.07, // 7% savings
+        rent: 0.0, // No savings percentage for rent
+        savings: 0.0, // No percentage for savings
+        groceries: 0.05,
+        "energy-bills": 0.01,
+        travel: 0.05,
+        "eating-out": 0.1,
+        entertainment: 0.2,
+        "coffee-shops": 0.1,
+        fashion: 0.1,
+        "home-diy": 0.1,
+        "health-beauty": 0.1,
+        electronics: 0.07,
     };
 
-    const monthlyRentInput = document.getElementById("monthly-rent");
-    const plannedSavingsInput = document.getElementById("planned-savings");
-    const needsRows = document.querySelectorAll("#needs-body tr");
-    const wantsRows = document.querySelectorAll("#wants-body tr");
-    const needsSavingsElement = document.getElementById("needs-savings");
-    const wantsSavingsElement = document.getElementById("wants-savings");
-    const totalSavingsElement = document.getElementById("total-savings");
-
-    let savings = 0;
-    let needsSavings = 0;
-    let wantsSavings = 0;
-
+    const inputs = document.querySelectorAll(".spend-row .styled-input");
+    const spendSavingElements = document.querySelectorAll(".spend-row .spend-saving");
     const pieCtx = document.getElementById("spendingChart").getContext("2d");
+
     const spendingChart = new Chart(pieCtx, {
-        type: "pie",
+        type: "doughnut",
         data: {
             labels: [],
             datasets: [
                 {
                     data: [],
                     backgroundColor: [
-                        "#4CAF50", "#2196F3", "#FFC107", "#FF5722", "#9C27B0",
-                        "#00BCD4", "#8BC34A", "#FF9800", "#3F51B5", "#607D8B",
+                        "#A8D5BA", "#C5CAE9", "#FFE0B2", "#FFAB91", "#D1C4E9",
+                        "#80DEEA", "#C8E6C9", "#FFCC80", "#9FA8DA", "#B0BEC5",
+                        "#D7CCC8", "#B39DDB", // Add more colors if needed
                     ],
                 },
             ],
         },
         options: {
             responsive: true,
+            cutout: '85%',
             plugins: {
                 legend: {
                     position: "right",
@@ -49,99 +44,30 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
-    const barCtx = document.getElementById("spendingBarChart").getContext("2d");
-    const barChart = new Chart(barCtx, {
-        type: "bar",
-        data: {
-            labels: ["Total Spend", "Total spend with Boma"],
-            datasets: [
-                {
-                    label: "Amount (£)",
-                    data: [0, 0], // Placeholder values
-                    backgroundColor: ["#FF5722", "#4CAF50"],
-                },
-                {
-                    label: "Amount (£)",
-                    data: [0, 0], // Placeholder values
-                    backgroundColor: ["#4CAF50"],
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
-
     function calculateSavings() {
-        const monthlyRent = parseFloat(monthlyRentInput.value) || 0;
-        const plannedSavings = parseFloat(plannedSavingsInput.value) || 0;
-
-        needsSavings = calculateCategorySavings(needsRows);
-        wantsSavings = calculateCategorySavings(wantsRows);
-        savings = needsSavings + wantsSavings + plannedSavings;
-
-        needsSavingsElement.textContent = `£${needsSavings.toFixed(2)}`;
-        wantsSavingsElement.textContent = `£${wantsSavings.toFixed(2)}`;
-        totalSavingsElement.textContent = `£${savings.toFixed(2)}`;
-
+        let totalSavings = 0;
         const categories = [];
         const values = [];
 
-        // Add rent and planned savings to the pie chart
-        if (monthlyRent > 0) {
-            categories.push("Rent");
-            values.push(monthlyRent);
-        }
-        if (plannedSavings > 0) {
-            categories.push("Planned Savings");
-            values.push(plannedSavings);
-        }
-
-        addCategoryData(needsRows, categories, values);
-        addCategoryData(wantsRows, categories, values);
-
-        updateChart(categories, values);
-        updateBarChart();
-    }
-
-    function calculateCategorySavings(rows) {
-        let categorySavings = 0;
-
-        rows.forEach((row) => {
-            const input = row.querySelector("input[type='number']");
-            const savingsElement = row.querySelector("span");
-            const category = input.dataset.category;
-
+        inputs.forEach((input, index) => {
+            const category = input.placeholder.toLowerCase().replace(/ /g, "-");
             const spend = parseFloat(input.value) || 0;
-            const savingsForRow = spend * 12 * (percentages[category] || 0);
+            const savings = spend * 12 * (percentages[category] || 0);
 
-            savingsElement.textContent = `£${savingsForRow.toFixed(2)}`;
-            categorySavings += savingsForRow;
-        });
+            totalSavings += savings;
+            spendSavingElements[index].textContent = `£${savings.toFixed(2)}`;
 
-        return categorySavings;
-    }
-
-    function addCategoryData(rows, categories, values) {
-        rows.forEach((row) => {
-            const input = row.querySelector("input[type='number']");
-            const category = input.dataset.category;
-
-            const spend = parseFloat(input.value) || 0;
             if (spend > 0) {
+                // Add to chart data
                 categories.push(
-                    category
-                        .replace(/-/g, " ")
-                        .replace(/\b\w/g, (c) => c.toUpperCase())
-                ); // Format category names
+                    category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+                );
                 values.push(spend);
             }
         });
+
+        updateChart(categories, values);
+        document.getElementById("total-savings").textContent = `£${totalSavings.toFixed(2)}`;
     }
 
     function updateChart(categories, values) {
@@ -150,39 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
         spendingChart.update();
     }
 
-    function updateBarChart() {
-        const totalSpend = Array.from(needsRows)
-            .concat(Array.from(wantsRows))
-            .reduce((sum, row) => {
-                const input = row.querySelector("input[type='number']");
-                const spend = parseFloat(input.value) || 0;
-                return sum + spend;
-            }, parseFloat(monthlyRentInput.value) || 0);
-
-        const totalDiscounts = Array.from(needsRows)
-            .concat(Array.from(wantsRows))
-            .reduce((sum, row) => {
-                const input = row.querySelector("input[type='number']");
-                const category = input.dataset.category;
-                const spend = parseFloat(input.value) || 0;
-                return sum + spend * (percentages[category] || 0);
-            }, 0);
-
-        const spendAfterSavings = totalSpend - totalDiscounts;
-
-        barChart.data.datasets[0].data = [totalSpend, spendAfterSavings];
-        barChart.data.datasets[0].label = "(£) " + totalSpend;
-        barChart.data.datasets[1].label = "(£) " + spendAfterSavings;
-        barChart.update();
-    }
-
-    [...needsRows, ...wantsRows].forEach((row) => {
-        const input = row.querySelector("input[type='number']");
+    // Attach event listeners to all input fields
+    inputs.forEach((input) => {
         input.addEventListener("input", calculateSavings);
     });
-
-    monthlyRentInput.addEventListener("input", calculateSavings);
-    plannedSavingsInput.addEventListener("input", calculateSavings);
 
     calculateSavings(); // Initial calculation
 });

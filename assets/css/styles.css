@@ -1,61 +1,133 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
-  
-  .calculator {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
+    padding: 0;
+    background-color: #f4f4f9;
     color: #333;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  thead {
-    background-color: #f9f9f9;
-  }
-  
-  input[type="number"] {
-    width: 100px;
-    padding: 5px;
-  }
-  
-  .total-savings {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+}
+
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding: 10px;
-    background-color: #e9f7ef;
-    border: 1px solid #c3e6cb;
-    border-radius: 4px;
-  }
+    color: #333;
+}
 
-  canvas {
-    margin-top: 20px;
-  }
+/* Highlight Total Annual Savings */
+#total-savings {
+    color: #4caf50; /* Green color for savings value */
+    font-weight: bold;
+}
 
-  h3, h4 {
-    margin-top: 20px;
-  }
-  
-  
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#spendingChart {
+    width: 150px;  /* Desired width */
+    height: 150px; /* Desired height */
+}
+
+main#main {
+    flex: 1;
+    padding: 1rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Input Group Styles */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Spend Row Styles */
+.spend-container {
+    margin-top: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.spend-row {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.spend-row .icon-placeholder {
+    width: 24px; /* Placeholder size */
+    height: 24px;
+    margin-right: 1rem;
+    background-color: #ddd; /* Gray background for icon */
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem; /* Placeholder text size */
+    color: #666;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.spend-row .styled-input {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative; /* Allows positioning of the spend-saving */
+}
+
+.spend-row .styled-input input[type="checkbox"] {
+    margin-right: 0.5rem; /* Space between checkbox and label */
+}
+
+.spend-row .spend-saving {
+    margin-left: 3rem; /* Minimal space to bring it closer */
+    font-weight: bold;
+    color: #4caf50;
+    flex-shrink: 0; /* Prevent shrinking */
+    white-space: nowrap; /* Prevent wrapping of the value */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .spend-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .spend-row .styled-input {
+        width: 100%; /* Full width on small screens */
+    }
+
+    .spend-row .spend-saving {
+        margin-left: 0; /* Reset margin for mobile */
+        margin-top: 0.5rem; /* Add space above */
+    }
+
+    .spend-row .icon-placeholder {
+        margin-bottom: 0.5rem; /* Add spacing for icon */
+    }
+}
