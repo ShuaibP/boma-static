@@ -8,6 +8,8 @@ body {
     color: #333;
 }
 
+
+
 h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -16,10 +18,25 @@ h3 {
     color: #333;
 }
 
+.heading-container {
+    display: flex;
+    align-items: baseline; /* Align text properly */
+    gap: 4rem; /* Adds space between the headings */
+}
+
+/* Style for the headings */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
 /* Highlight Total Annual Savings */
 #total-savings {
     color: #4caf50; /* Green color for savings value */
     font-weight: bold;
+    margin-left: 2.5rem;
 }
 
 #wrapper {
@@ -104,7 +121,7 @@ main#main {
 }
 
 .spend-row .spend-saving {
-    margin-left: 3rem; /* Minimal space to bring it closer */
+    margin-left: 5rem; /* Minimal space to bring it closer */
     font-weight: bold;
     color: #4caf50;
     flex-shrink: 0; /* Prevent shrinking */
