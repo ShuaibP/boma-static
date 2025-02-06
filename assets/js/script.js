@@ -48,27 +48,34 @@ document.addEventListener("DOMContentLoaded", () => {
         let totalSavings = 0;
         const categories = [];
         const values = [];
-
+        const categoryMapping = {
+            "health & beauty": "health-beauty",
+        };
+    
+    
         inputs.forEach((input, index) => {
-            const category = input.placeholder.toLowerCase().replace(/ /g, "-");
+            let category = categoryMapping[input.placeholder.toLowerCase()] || 
+            input.placeholder.toLowerCase().replace(/ /g, "-");
             const spend = parseFloat(input.value) || 0;
             const savings = spend * 12 * (percentages[category] || 0);
-
-            totalSavings += savings;
-            spendSavingElements[index].textContent = `£${savings.toFixed(2)}`;
-
+    
+            if (category !== "monthly-rent" && category !== "monthly-savings") {
+                totalSavings += savings;
+                spendSavingElements[index].textContent = `£${savings.toFixed(2)}`;
+            } else {
+                spendSavingElements[index].textContent = ""; // Hide savings display
+            }
+    
             if (spend > 0) {
-                // Add to chart data
-                categories.push(
-                    category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-                );
+                categories.push(category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
                 values.push(spend);
             }
         });
-
+    
         updateChart(categories, values);
         document.getElementById("total-savings").textContent = `£${totalSavings.toFixed(2)}`;
     }
+    
 
     function updateChart(categories, values) {
         spendingChart.data.labels = categories;
