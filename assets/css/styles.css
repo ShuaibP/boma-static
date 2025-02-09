@@ -133,6 +133,10 @@ main#main {
         margin-left: 2rem;
     }
 
+    .spend-row .styled-input {
+        width: 100%; /* Full width on small screens */
+    }
+
     .heading-container {
         gap: 5rem; /* Adds space between the headings */
     }
