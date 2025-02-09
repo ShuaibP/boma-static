@@ -8,8 +8,6 @@ body {
     color: #333;
 }
 
-
-
 h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -21,7 +19,7 @@ h3 {
 .heading-container {
     display: flex;
     align-items: baseline; /* Align text properly */
-    gap: 4rem; /* Adds space between the headings */
+    gap: 2.5rem; /* Adds space between the headings */
 }
 
 /* Style for the headings */
@@ -130,21 +128,13 @@ main#main {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .spend-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .spend-row .styled-input {
-        width: 100%; /* Full width on small screens */
-    }
 
     .spend-row .spend-saving {
-        margin-left: 0; /* Reset margin for mobile */
-        margin-top: 0.5rem; /* Add space above */
+        margin-left: 2rem;
     }
 
-    .spend-row .icon-placeholder {
-        margin-bottom: 0.5rem; /* Add spacing for icon */
+    .heading-container {
+        gap: 5rem; /* Adds space between the headings */
     }
+
 }
